@@ -1,0 +1,70 @@
+<h3 style="text-align: center;">Products List</h3>
+<div class="d-flex" style="margin-left: 9%; margin-right: 9%;">
+    <input class="form-control me-2" [(ngModel)]="searchtext" type="search" placeholder="Search for Category"
+        aria-label="Search">
+    <button class="btn btn-outline-success" type="submit" (click)="search()">Search</button>
+</div>
+<div *ngIf="response">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <th>Product Id</th>
+                <th>Product Category</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Unit</th>
+                <th>Modify</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of data">
+                    <td>{{item.productId}}</td>
+                    <td>{{item.productCategory}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.productDesc}}</td>
+                    <td>{{item.productUnit}}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" (click)="updateRecord(item.productId)">UPDATE</button>&nbsp;
+                        <button class="btn btn-danger btn-sm" (click)="deleteRecord(item.productId)">DELETE</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="responses">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <th>Product Id</th>
+                <th>Product Category</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Unit</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of responses">
+                    <td>{{item.productId}}</td>
+                    <td>{{item.productCategory}}</td>
+                    <td>{{item.productName}}</td>
+                    <td>{{item.productDesc}}</td>
+                    <td>{{item.productUnit}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="errorMessage">
+    <h5 class="d-flex justify-content-center" style="margin-top: 1%;">{{errorMessage.error.message}}</h5>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div style="padding:0.5%">
+        <button class="btn btn-primary" routerLink="/app-add-product">Add Product</button>
+    </div>
+    <!-- <div style="padding:0.5%" *ngIf="responses || errorMessage"> -->
+    <div style="padding:0.5%">
+        <button class="btn btn-outline-success" (click)="refresh()">Refresh</button>
+    </div>
+</div>

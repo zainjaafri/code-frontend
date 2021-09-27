@@ -1,0 +1,24 @@
+<h3 style="text-align: center; text-decoration: underline;">Update Product</h3>
+<form [formGroup]="updateProducts" (ngSubmit)="updateProduct()" style="padding-left: 15%; padding-right: 15%;">
+    <div class="mb-3">
+        <label for="productCategory" class="form-label">Product Category</label>
+        <input type="productCategory" class="form-control" id="productCategory" name="newProduct" formControlName="productCategory" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="productName" class="form-label">Product Name</label>
+        <input type="productName" class="form-control" id="productName" name="newProduct" formControlName="productName" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="productDesc" class="form-label">Product Description</label>
+        <input type="productDesc" class="form-control" id="productDesc" name="newProduct" formControlName="productDesc" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="productUnit" class="form-label">Product Unit</label>
+        <input type="productUnit" class="form-control" id="productUnit" name="newProduct" formControlName="productUnit" aria-describedby="emailHelp">
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary ">Update</button>
+    </div>
+    
+</form>
+<router-outlet></router-outlet>
