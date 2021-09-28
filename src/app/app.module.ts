@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './home/products/products.component';
-import { TransferService } from './transfer.service';
 import { AddProductComponent } from './home/add-product/add-product.component';
 import { ModifyProductsComponent } from './home/modify-products/modify-products.component';
 
@@ -28,7 +27,6 @@ import { ModifyProductsComponent } from './home/modify-products/modify-products.
     ReactiveFormsModule, 
   ],
   providers: [
-    TransferService
   ],
   bootstrap: [AppComponent]
 })

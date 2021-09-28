@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TransferService } from 'src/app/transfer.service';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -18,15 +18,9 @@ export class AddProductComponent implements OnInit {
     productUnit: '',
   });
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private transfer: TransferService) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router) { }
 
-  ngOnInit(): void {
-    this.transfer.idfromSource$.subscribe((data) => {
-      this.prodId = data;
-      console.log("Id showinf from child " + this.prodId);
-    });
-
-  }
+  ngOnInit(): void { }
 
   addProduct() {
       let obs = this.http.post('http://localhost:8080/', this.addNewProducts.value).toPromise().then(data => {

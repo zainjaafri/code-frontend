@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { TransferService } from 'src/app/transfer.service';
 
 @Component({
   selector: 'app-products',
@@ -15,15 +14,20 @@ export class ProductsComponent implements OnInit {
   responses: any;
   data: any;
   searchtext: string = "";
+  emptyProducts!: string;
   errorMessage!: any;
   @Input() update: any;
-  constructor(private http: HttpClient, private router: Router, private transfer:TransferService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     let obs = this.http.get('http://localhost:8080/');
     obs.subscribe((response) => {
       console.log(response);
       this.response = response;
+      if(this.response.length===0){
+        this.emptyProducts="No products found, Please add products to database"
+      }
+      else{ this.emptyProducts=""}
     })
 
     this.http.get('http://localhost:8080/')
@@ -63,7 +67,6 @@ export class ProductsComponent implements OnInit {
   }
 
   updateRecord(prodId: string){
-    this.transfer.sendId(prodId);
     this.router.navigate(['/app-modify-products/'+prodId]);
   }
 

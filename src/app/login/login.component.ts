@@ -1,6 +1,5 @@
-import { Output, EventEmitter, Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',

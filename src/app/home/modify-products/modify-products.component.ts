@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TransferService } from 'src/app/transfer.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,7 +22,7 @@ export class ModifyProductsComponent implements OnInit {
   response: any;
   errorMessage!: any;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private transfer: TransferService, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     console.log("FROM ACTIVATED ROUTE: " + this.activatedRoute.snapshot.params.id);

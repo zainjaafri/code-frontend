@@ -3,7 +3,6 @@ import { NgModule, Component, Input, Output, EventEmitter } from '@angular/core'
 import { Router } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { FormBuilder } from '@angular/forms';
-import { TransferService } from './transfer.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +18,7 @@ export class AppComponent {
   update: any;
   @Output() showAllProductsClicked = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private svc: TransferService, private http: HttpClient) {  }
+  constructor(private router: Router, private http: HttpClient) {  }
 
   ngOnInit(){
     this.update=false;
