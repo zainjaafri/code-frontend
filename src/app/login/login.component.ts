@@ -1,5 +1,7 @@
 import {Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +11,38 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   email!: string;
   password!: string;
+  response: any;
+  loggedIn: boolean= false;
 
-  constructor(private router: Router) { }
+  signedIn = false;
+  loginResponse: any;
+
+  loginCredentials = this.formBuilder.group({
+    loginEmail: new FormControl(''),
+    loginPassword: new FormControl(''),
+  });
+
+  constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router) { }
 
   ngOnInit(): void {
   }
   
   login() : void {
-    if(this.email == 'admin@gmail.com' && this.password == 'admin'){
-     this.router.navigate(["home-component"]);
-    }else {
-      alert("Invalid credentials");
-    }
+    console.log("inside login method")
+
+    let obs = this.http.post('http://localhost:8080/login',this.loginCredentials.value).toPromise().then(loginResponse => {
+      this.loginResponse = loginResponse
+      console.log(this.loginResponse);
+      if(this.loginResponse==true){
+        this.loggedIn=true;
+        this.router.navigate(["/home-component"]);
+      }
+      else{
+        this.loggedIn=false;
+        alert("Incorrect Username or Password Entered")
+      }
+      
+    });
   }
   
 }

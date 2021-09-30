@@ -1,14 +1,15 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { NgModule, Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class AppComponent {
+export class NavbarComponent implements OnInit {
+
   signedIn = false;
   email!: string;
   password!: string;
@@ -23,18 +24,13 @@ export class AppComponent {
     loginEmail: new FormControl(''),
     loginPassword: new FormControl(''),
   });
-  @Output() showAllProductsClicked = new EventEmitter<boolean>();
 
   constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) { 
-    router.navigate(['login-component']);
+    //router.navigate(['login-component']);
   }
 
   ngOnInit() {
     this.update = false;
-  }
-
-  showAllProducts(x: boolean) {
-    this.showAllProductsClicked.emit(x);
   }
 
   allProducts() {
